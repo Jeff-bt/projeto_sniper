@@ -24,6 +24,40 @@
         color: white;
       }
 
+      /* TELA INICIAL */
+
+      .start-screen {
+        position: fixed;
+        inset: 0;
+        background: black;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 999;
+      }
+
+      .start-box {
+        text-align: center;
+      }
+
+      .start-box h1 {
+        font-family: "Cinzel";
+        font-size: 72px;
+        margin-bottom: 40px;
+        letter-spacing: 3px;
+      }
+
+      .start-box button {
+        padding: 20px 40px;
+        font-size: 18px;
+        border: none;
+        border-radius: 12px;
+        cursor: pointer;
+        background: linear-gradient(90deg, #ff7a00, #ffae00);
+        color: white;
+        box-shadow: 0 10px 30px rgba(255, 120, 0, 0.5);
+      }
+
       /* NAVBAR */
 
       .navbar {
@@ -298,6 +332,14 @@
   </head>
 
   <body>
+    <!-- TELA INICIAL -->
+
+    <div class="start-screen" id="startScreen">
+      <div class="start-box">
+        <button onclick="startGame()">Iniciar Missão</button>
+      </div>
+    </div>
+
     <header class="navbar">
       <div class="menu">
         <a>Mundo</a>
@@ -319,7 +361,7 @@
     </header>
 
     <section class="hero">
-      <video autoplay muted loop playsinline class="hero-video">
+      <video id="heroVideo" autoplay muted loop playsinline class="hero-video">
         <source src="assets/acao.mp4" type="video/mp4" />
       </video>
 
@@ -344,6 +386,17 @@
     </section>
 
     <script>
+      const video = document.getElementById("heroVideo");
+      const startScreen = document.getElementById("startScreen");
+
+      function startGame() {
+        startScreen.style.display = "none";
+
+        video.muted = false;
+        video.currentTime = 0;
+        video.play();
+      }
+
       document.getElementById("playBtn").onclick = () => {
         alert("Missão iniciada!");
       };
