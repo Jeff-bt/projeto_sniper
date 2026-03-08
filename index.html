@@ -1,0 +1,359 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <title>SNIPER</title>
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cinzel:wght@900&family=Manrope:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      /* RESET */
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Manrope", sans-serif;
+        background: #050505;
+        color: white;
+      }
+
+      /* NAVBAR */
+
+      .navbar {
+        position: absolute;
+        top: 24px;
+        left: 50%;
+        transform: translateX(-50%);
+
+        width: calc(100% - 80px);
+        max-width: 1100px;
+
+        height: 72px;
+
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        padding: 0 28px;
+
+        border-radius: 18px;
+
+        background: rgba(10, 10, 10, 0.6);
+        backdrop-filter: blur(18px);
+
+        border: 1px solid rgba(255, 255, 255, 0.06);
+
+        box-shadow:
+          0 8px 40px rgba(0, 0, 0, 0.8),
+          inset 0 0 10px rgba(255, 255, 255, 0.03);
+
+        z-index: 20;
+      }
+
+      /* MENU */
+
+      .menu {
+        display: flex;
+        gap: 36px;
+        font-size: 14px;
+        font-weight: 600;
+      }
+
+      .menu a {
+        cursor: pointer;
+        opacity: 0.75;
+        transition: 0.25s;
+      }
+
+      .menu a:hover {
+        opacity: 1;
+        color: #00b3ff;
+      }
+
+      /* LOGO */
+
+      .logo {
+        position: absolute;
+        left: 50%;
+        top: 75%;
+        transform: translate(-50%, -50%);
+        width: 120px;
+      }
+
+      /* ACTIONS */
+
+      .actions {
+        display: flex;
+        gap: 14px;
+      }
+
+      /* BOTÕES NAV */
+
+      .btn-login {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+
+        padding: 12px 18px;
+
+        border-radius: 10px;
+
+        border: 1px solid rgba(255, 255, 255, 0.08);
+
+        background: rgba(20, 20, 20, 0.8);
+
+        color: white;
+
+        font-weight: 600;
+
+        cursor: pointer;
+
+        transition: 0.25s;
+      }
+
+      .btn-login:hover {
+        background: #151515;
+      }
+
+      .btn-play {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+
+        padding: 12px 18px;
+
+        border-radius: 10px;
+
+        border: none;
+
+        background: linear-gradient(90deg, #009dff, #00d4ff);
+
+        color: white;
+
+        font-weight: 600;
+
+        cursor: pointer;
+
+        box-shadow: 0 0 15px rgba(0, 179, 255, 0.4);
+
+        transition: 0.25s;
+      }
+
+      .btn-play:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 0 25px rgba(0, 179, 255, 0.7);
+      }
+
+      /* HERO */
+
+      .hero {
+        position: relative;
+        min-height: 100vh;
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+        padding-bottom: 60px;
+        overflow: hidden;
+      }
+
+      /* VIDEO */
+
+      .hero-video {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        z-index: -2;
+      }
+
+      /* OVERLAY */
+
+      .hero::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+
+        background:
+          linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent 300px),
+          linear-gradient(to bottom, rgba(0, 0, 0, 0.6), transparent 200px),
+          radial-gradient(circle at center, transparent 40%, rgba(0, 0, 0, 0.8));
+
+        z-index: -1;
+      }
+
+      /* HERO CONTENT */
+
+      .hero-content {
+        max-width: 800px;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        gap: 18px;
+        padding: 20px;
+      }
+
+      /* TITULO */
+
+      .hero h1 {
+        font-family: "Cinzel";
+        font-size: 64px;
+        letter-spacing: -1px;
+
+        background: linear-gradient(180deg, #ffffff, #cfcfcf);
+        -webkit-background-clip: text;
+        color: transparent;
+
+        text-transform: uppercase;
+      }
+
+      /* TEXTO */
+
+      .hero p {
+        font-size: 18px;
+        opacity: 0.8;
+        line-height: 1.6;
+      }
+
+      /* BUTTONS */
+
+      .buttons {
+        display: flex;
+        justify-content: center;
+        gap: 16px;
+        margin-top: 10px;
+      }
+
+      /* BTN PRIMARY */
+
+      .btn-primary {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+
+        font-size: 16px;
+        font-weight: 600;
+
+        padding: 18px 28px;
+
+        border-radius: 10px;
+
+        border: none;
+
+        cursor: pointer;
+
+        background: linear-gradient(90deg, #ff7a00, #ffae00);
+
+        color: white;
+
+        box-shadow:
+          0 6px 20px rgba(255, 120, 0, 0.5),
+          inset 0 0 8px rgba(255, 255, 255, 0.5);
+
+        transition: 0.25s;
+      }
+
+      .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 30px rgba(255, 120, 0, 0.8);
+      }
+
+      /* BTN SECONDARY */
+
+      .btn-secondary {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+
+        font-size: 16px;
+        font-weight: 600;
+
+        padding: 18px 28px;
+
+        border-radius: 10px;
+
+        border: 1px solid rgba(255, 255, 255, 0.1);
+
+        cursor: pointer;
+
+        background: rgba(20, 20, 20, 0.8);
+
+        color: white;
+
+        transition: 0.25s;
+      }
+
+      .btn-secondary:hover {
+        background: #111;
+      }
+    </style>
+  </head>
+
+  <body>
+    <header class="navbar">
+      <div class="menu">
+        <a>Mundo</a>
+        <a>História</a>
+        <a>Gameplay</a>
+      </div>
+
+      <img src="assets/logo.svg" class="logo" />
+
+      <div class="actions">
+        <button class="btn-login">
+          Login <img src="assets/pessoa.svg" width="16" />
+        </button>
+
+        <button class="btn-play">
+          Jogue de Graça <img src="assets/seta.svg" width="16" />
+        </button>
+      </div>
+    </header>
+
+    <section class="hero">
+      <video autoplay muted loop playsinline class="hero-video">
+        <source src="assets/acao.mp4" type="video/mp4" />
+      </video>
+
+      <div class="hero-content">
+        <h1>Precisão é Sua Única Arma</h1>
+
+        <p>
+          Condições extremas. Precisão absoluta. Apenas um tiro pode decidir
+          tudo.
+        </p>
+
+        <div class="buttons">
+          <button id="playBtn" class="btn-primary">
+            Jogue de Graça <img src="assets/seta.svg" width="16" />
+          </button>
+
+          <button id="infoBtn" class="btn-secondary">
+            Saiba Mais <img src="assets/seta.svg" width="16" />
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <script>
+      document.getElementById("playBtn").onclick = () => {
+        alert("Missão iniciada!");
+      };
+
+      document.getElementById("infoBtn").onclick = () => {
+        window.scrollTo({
+          top: 900,
+          behavior: "smooth",
+        });
+      };
+    </script>
+  </body>
+</html>
